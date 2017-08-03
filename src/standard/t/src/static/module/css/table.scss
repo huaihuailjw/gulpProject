@@ -1,0 +1,31 @@
+table.border {
+    width:100%;
+    border-left:1px solid #ccc;
+    border-bottom:1px solid #ccc;
+    box-sizing: content-box; 
+    font-size: 14px;
+    line-height: 1.4;
+    margin: 10px auto;
+   caption {
+        font-size:16px;
+        font-weight: bold;
+        padding:5px 0;
+    } 
+    td,th{
+        text-align:center;
+        vertical-align: middle;
+        min-height:24px;
+        padding:4px;
+        border-top:1px solid #ccc; 
+        border-right:1px solid #ccc; 
+        &::last-child{
+            border-right:0; 
+        }
+    }
+    tfoot td{
+        padding:10px;
+    }
+}
+.bdr{
+    border-right: 1px solid #ccc;
+}

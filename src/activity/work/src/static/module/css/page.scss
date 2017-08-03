@@ -1,0 +1,325 @@
+@import "../../function/fn.scss";
+$designWidth:750;
+$headerBgc:#11a9ec;
+$borderColor:#11a9ec;
+a{
+    @include setTapColor();
+}
+hr {
+    position: relative;
+    display:block;
+    border:transparent;
+    padding: 5px 0;
+    margin-bottom: 16px;
+    &:after {
+        @include setBottomLine();
+    }
+}
+/*装所有东西的大盒子*/
+.page {
+    width: pxToRem( $designWidth );
+    margin: 0 auto;
+    position: relative;
+    font-family: 'PingFang SC Regular';
+    font-size: 16px;
+    line-height: 1.6;
+    padding-bottom: pxToRem(84);
+    padding-bottom: pxToRem(88);
+    &.logo-fixed{
+        padding-top:pxToRem(500);
+        .logo{
+            position: fixed;
+            top:pxToRem(84);
+            top:pxToRem(88);
+            z-index:2;
+        }
+    }
+    &.fixed{
+        padding-top: pxToRem(84);
+        padding-top: pxToRem(88);
+        header{
+            position: fixed;
+            top:0;
+            left:auto;
+            z-index: 10;
+        }
+    }
+    .wrap-title {
+        display: block;
+        width: 100%;
+        height: pxToRem(65);        
+        line-height: pxToRem(65);        
+        font-size: 16px;
+        text-indent: pxToRem(40);
+        margin: pxToRem(30) auto;
+        background-color: rgb(58,150,206);
+        color:#fff;
+    }
+    .body{
+        padding:0;
+        h2{
+            font-size:18px;
+        }
+         
+        .img {
+            width: pxToRem($designWidth - 60*2);
+            margin: pxToRem(36) auto;
+        }
+    }
+    
+}
+.pds p {
+    padding:  0 pxToRem(30);
+} 
+// 图片
+.img{
+    display: block;
+    border: 0;
+    max-width: 100%;
+    height:auto;
+    margin: 0 auto;
+}
+p{
+    font-size: 15px;
+    border:1px solid transparent;
+    padding:  0 pxToRem(40);
+    color:rgb(102,102,102);
+    &.indent{
+        text-indent: 36px;
+    }
+}
+.logo {
+    display: block;
+    height: auto;
+    text-align: center;
+    box-sizing: content-box;
+}
+// 标题
+.caption {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: pxToRem(60);
+    line-height: pxToRem(60);
+    font-size: 18px;
+    text-indent: pxToRem(40);
+    margin: 0 auto;
+    padding: pxToRem(26) 0;
+    margin-bottom: pxToRem(-26);
+    &.pds {
+        text-indent: pxToRem(30);
+    }
+    &:before {
+        position: absolute;
+        left:0;top:28%;
+        content:' ';
+        height:32%;
+        width:pxToRem(10);
+        background-color: rgb(24,166,255);
+    }
+    
+}
+/*header部分*/
+header {
+    position: relative;
+    width: 100%;
+    max-width:540px;
+    // height: pxToRem(84);
+    // line-height: pxToRem(84);
+
+    height: pxToRem(88);
+    line-height: pxToRem(88);
+
+    // background:$headerBgc;
+    // background: linear-gradient(to right, rgb(23,166,255) , rgb(79,183,247));
+    background: rgb(72,175,255);
+    text-align: center;
+    vertical-align: middle;
+    font-size:17px;
+    color: #fff;
+    label {
+        font-weight: 400;
+    }
+    .back {
+        position:absolute;
+        font-family: '黑体';
+        @include font-dpr(30px); 
+        color:#fff;
+        float:left;
+        top:pxToRem(23);
+        left: pxToRem(40);
+        outline: 0;
+        border:none;
+        @include setTapColor();
+        background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAA/CAYAAACB+sq6AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA25pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo4MTlCMDMzRUEwOTRFMzExQTk4NkIyNEEyOTcyN0M4RSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo0ODVDRTM3NUI0NUUxMUU1QjIxQkEwRTJDMUIzNEE0RCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo0ODVDRTM3NEI0NUUxMUU1QjIxQkEwRTJDMUIzNEE0RCIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNCAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4ZmM1NTk3YS1jM2QzLTBlNDUtOGU3Zi02ZDdkMzdlOTUwMzAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6ODE5QjAzM0VBMDk0RTMxMUE5ODZCMjRBMjk3MjdDOEUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6b/S/fAAABF0lEQVR42syZSwrCMBQA2+IxsnPh/fddeAwFjyLEtFJQMW0+7zOBR5cztGnyPmOMcfBcJyduSDGneE5O8GuKy/oClk9gGCHFI77X8gyu8HX/ecKtBLJwC4FduLbAIVxToAiuJVAM1xCogksLVMMlBZrgUgLNcAmBLnivQDe8R0AE3iogBm8REIXXCojDawRU4KUCavASAVX4kYA6fE/ABJ4TMIP/EzCF/wqYwz8FXOCbgBt8E7h5wZeYBu9F+ATumxDxGyIOIsRRjLiMENcxIiFBpGSIpBSRliMKE0RphihOEeU5okGBaNEgmlSINh2iUYlo1SKa1Yh2PWJggRjZIIZWiLFdVmJ0GF5vo9tziruHwNfw+iXAAM9SAouPVp+yAAAAAElFTkSuQmCC');
+        width: pxToRem( 47 );
+        height:pxToRem( 42 );
+        background-size: contain;
+        background-repeat: no-repeat;
+        &:active{
+            top:pxToRem(26);
+            left: pxToRem(38);
+        }
+    }
+}
+.arrow-right {
+    display:block;
+    width: pxToRem(32);
+    height: pxToRem(60);
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAA8CAYAAAAHbrgUAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA25pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo4MTlCMDMzRUEwOTRFMzExQTk4NkIyNEEyOTcyN0M4RSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo5QzNDNzRBMDUyRDMxMUU2QTZERURDMTFEOTMxMzVENSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo5QzNDNzQ5RjUyRDMxMUU2QTZERURDMTFEOTMxMzVENSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxNmMyYTRiMy1mYjU3LTZkNDktOGE0Yy04YTZkYTUyNWJhOGIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6ODE5QjAzM0VBMDk0RTMxMUE5ODZCMjRBMjk3MjdDOEUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6g8oYVAAABnklEQVR42uyZsU7DMBCGW4sdlm5sDCxMDGxIiAH1MVAfrOIxEANC6sbAxIIEG1uX9gnS31KQXMdNbN/dn6FEOqXq0O/ruYn/S6dN00zGPNxk5ONf4OTvxXL59I3TFjVfLB7XwfsiAD4ruwMefo16BXQ2xhLMUZ+oK6aEC1rl236LemdKuGi9Njg9hBKoGfUqgMSWKeEO/HJpEq7n8qFIuIFr2Fwi505oKpF7KzaTKNkLTCRKNyN1iZrdUFWidjtWk5DkARUJaSARS2gkIpGEViSrltDMhFUS2qG0IzEUaixScZGEVSyPJVaQOGfPBaHEJeotJWE9mIQSFykJ88koCjUdCcpolpB4Oa7hFC0/bb/1Deqn7QZHIAG/w5L8sgR64dYCIfwrBd97PmAI9xP3ffjMwboD2XALgSK4tkAHjlqz7gNVcC2BariGgAguFRDDJQIq8FoBNXiNgCq8VEAdXiJgAs8VMIMPCkRhQh3eK8CAHxRgwZMCTHhHAPAzJnxPoJ1gVyVhQrsDz+0kS4PHAn7tP5hwf0yP/p/TnQADACj82oHMrc/+AAAAAElFTkSuQmCC');
+    background-size: cover;
+}
+
+
+
+
+.col-box {
+    display: block;
+    width:100%;
+    min-height:10px;
+    box-sizing: border-box;
+    a{
+       @include setTapColor(); 
+    }
+    .col-l{
+        width:37%;
+        min-height: 18px;
+        float: left;
+        box-sizing: border-box;
+    }
+    .col-r{
+        width:63%;
+        min-height: 18px;
+        float: right;
+        box-sizing: border-box;
+    }
+}
+.col-block {  
+    display:inline-block;
+    vertical-align: text-top;
+    font-size:15px;
+    box-sizing: border-box;
+}
+.link-title { // 购买链接标题
+    padding-top: 15px;
+    padding-bottom: 2px;
+}
+// 伪元素箭头图标
+.arrow{
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 13px;
+    min-height: 13px;
+    background: transparent;
+    vertical-align: middle;
+    bottom:2px;
+    
+   &:before{
+       position: absolute;
+       top:0;
+       left:0;
+       width: 100%;
+       height: 100%;
+       content:' ';
+       border-top:1px solid #11a9ec;
+       transform: rotateZ(45deg);
+   } 
+   &:after{
+       position: absolute;
+       top:0;
+       left:0;
+       width: 100%;
+       height: 100%;
+       content:' ';
+       border-top:1px solid #11a9ec;
+       transform: rotateZ(135deg);
+   } 
+
+}
+.ding {
+    display:inline-block;
+    width: pxToRem(33);
+    height: pxToRem(43);
+    background: url('../images/ding.png'); /*page.scss被 common.scss引入 路径应以common.scss为基准*/
+    background-size: cover;
+    &:active {
+        transform: translate(2%,2%);
+    }
+}
+.serve-location { // 服务位置
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    padding:  0 pxToRem(40);
+    margin-bottom: pxToRem(40);
+    &.line {
+       padding-bottom: pxToRem(20); 
+    }
+    &.line:after {
+        @include setBottomLine();
+        width: auto;
+        left: pxToRem(40);
+        right: pxToRem(40);
+    }
+    .title {
+        text-align: left;
+        color:rgb(102,102,102);
+    }
+    .item {
+        position: relative;
+        margin: pxToRem(18) auto;
+        color:rgb(60,141,191);
+        &.disabled {
+            color:grey!important;
+            a {
+                color:grey!important;
+            }
+        }
+       a {
+           display:block;
+           width: 100%; 
+           height: 100%;
+           color:rgb(60,141,191);
+       }
+       &:active{
+            color:darken(rgb(60,141,191), 10%);
+            a {
+                color:darken(rgb(60,141,191), 10%);
+            }
+            .arrow{
+                right:3px;
+             }
+        }
+        .arrow{
+            position: absolute;
+            right:2px;
+            top:50%;
+            transform: translateY(-50%);
+            width: 13px;height: 13px;
+            // left:-10%;
+        }
+    }
+}
+.go{
+    display:block;
+    @include setTapColor();
+    color:#11a9ec;
+    text-align: right;
+    &:active{
+        color:darken(#11a9ec, 20%);
+        .arrow{
+            left:-9%;
+        }
+    }
+    .arrow{
+        width: 13px;height: 13px;
+        left:-10%;
+    }
+}
+.tag{
+    display:block;
+    color:rgb(102,102,102);
+}

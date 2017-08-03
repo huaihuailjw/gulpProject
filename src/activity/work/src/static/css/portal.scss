@@ -1,0 +1,258 @@
+@import "../function/fn.scss";
+$designWidth:750;
+
+@keyframes rotating {
+    from {
+        transform: translate(-50%,-50%) rotate(35deg);
+    }
+    to {
+        transform:translate(-50%,-50%) rotate(395deg);
+    }
+}
+@keyframes rotating-reverse {
+    from {
+        transform: translate(-50%,-50%) rotate(-35deg);
+    }
+    to {
+        transform:translate(-50%,-50%) rotate(-395deg);
+    }
+}
+.paused {
+    animation-play-state: paused!important;
+}
+.running {
+    animation-play-state: running!important;
+}
+.icon {
+    display:inline-block;
+    width:pxToRem(62);
+    height:pxToRem(62);
+    padding: 1px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center bottom;
+    &.park {
+       background-image: url('../images/park_icon.png'); 
+    }
+    &.bus {
+        background-image: url('../images/bus_icon.png');
+    }
+    &.subway {
+        background-image: url('../images/subway_icon.png');
+    }
+    &.taxi {
+        background-image: url('../images/taxi_icon.png');
+    }
+    &.ferry {
+        background-image: url('../images/ferry_icon.png');
+    }
+    &.road{
+        background-image: url('../images/road.png');
+    }
+    &.bus1{
+        background-image: url('../images/bus1.png');
+    }
+    
+}
+header {
+    background: #00B1FF;
+}
+
+.round {
+    position: relative;
+    width:pxToRem(624);
+    height:pxToRem(624);
+    margin: pxToRem(116) auto 0;
+    box-sizing: border-box;
+    // border: 1px solid transparent;
+    // border-radius: 50%;
+    .circle2 {
+        position:absolute;
+        top:pxToRem(310);
+        left:pxToRem(309);
+        margin: 0;
+
+        width:pxToRem(320);
+        height:pxToRem(320);
+        box-sizing: border-box;
+        // background-image: url('../images/service_circle2.png');    
+        background-image: url('../images/blue_circle@2x.png');    
+        background-repeat: no-repeat;
+        background-position:center center;
+        background-size: contain;
+        border:1px solid transparent;
+        // border:1px solid blue;
+        animation: rotating 24s infinite linear;
+    }
+    .circle { // 外部 圆环
+        position:absolute;
+        top:50%;left: 50%;
+
+        z-index: 8;
+        width:pxToRem(342);
+        height:pxToRem(342);
+        box-sizing: border-box;
+        // background-image: url('../images/service_circle.png');    
+        background-image: url('../images/grey_circle@2x.png');    
+        background-size:contain;
+        background-repeat: no-repeat;
+        background-position:center center;
+        border:1px solid transparent;
+        // border:1px solid purple;
+        animation: rotating 24s infinite linear;
+        &:before { // 内部圆环
+            content: ' ';
+            position:absolute;
+            margin: 0;
+            top: 50%;left: 50%;
+            top: 0;left: 0;
+            top:pxToRem(8.854);
+            left:pxToRem(8.15);
+            // transform: translate(-50%,-50%);
+
+            width:pxToRem(320);
+            height:pxToRem(320);
+            box-sizing: border-box;
+            background-image: url('../images/blue_circle@2x.png');    
+            background-repeat: no-repeat;
+            background-position:center center;
+            background-size: contain;
+            border:1px solid transparent;
+            // animation: rotating 24s infinite linear;
+        }
+        &:after { // 蓝色边线
+            content: '';
+            position: absolute;
+            top: 0px;
+            right:pxToRem(51);
+            width: pxToRem(124);
+            height: pxToRem(54);
+            background-image: url('../images/blue_line@2x.png');    
+            background-size:contain;
+        }
+    }
+    .wordbox { // 文字图片
+        position: absolute;
+        z-index:9;
+        width:pxToRem(217);
+        height:pxToRem(217);
+        top:50%;left: 50%;
+        box-sizing: border-box;
+        border-radius: 50%;
+        transform: translate(-50%,-50%);
+        // animation: rotating-reverse 24s infinite linear;
+        img {
+            position: relative;
+            width: 86%;
+            height: 86%;
+            z-index: 10;
+            left: 7%;
+            top: 7%;
+        }
+        &.bg {
+            border:1px solid #fff;
+            &:after{
+               content:''; 
+               position: absolute; 
+               width: 96%;
+               height: 96%;
+               top:2%;
+               left: 2%;
+               background-color: rgb(107,191,245);
+               border-radius: 50%;
+               z-index: 2;
+            }
+        }
+    }
+    .inside { // 内环内容容器
+        position: absolute;
+        z-index:9;
+        width:pxToRem(217);
+        height:pxToRem(217);
+        top:50%;left: 50%;
+        transform: translate( pxToRem(-107),pxToRem(-108) );
+        border-radius: 50%;
+        text-align: center;
+        border:1px solid transparent;
+        // border:1px solid red;
+        span {
+            position: relative;
+            top: pxToRem(45);
+            z-index: 10;
+            display:inline-block;
+            width:auto;
+            height:auto;
+            font-family:"SimHei", "Microsoft YaHei", "YouYuan", "arial";
+            // font-size:22px;
+            font-size:pxToRem(45);
+            // text-shadow: 0 0 5px lighten(blue,15%);
+            color:#fff;
+            & + & {
+               top:0 
+            }
+        }
+        &:before {
+            content:' ';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top:0;left:0;
+            background-color: rgb(48,168,244);
+            border-radius: 50%;
+        }
+        &:after {
+            content:' ';
+            position: absolute;
+            top:3%;left:3%;
+            width: 94%;
+            height: 94%;
+
+            // top:1%;left:1%;
+            // width: 98%;
+            // height: 98%;
+            background-color: rgb(109,192,247);
+            border-radius: 50%;
+        }
+    }
+    .cla {
+        position: absolute;        
+        top:0;
+        left: 50%;
+        transform: translateX(-50%);
+        display:block;
+        width:pxToRem(80);
+        height:pxToRem(80);
+        text-align: center;
+        font-size:12px;
+        // border:1px solid green;
+        &:active {
+            transform:translateX(-50%) translate(2px,2px);
+        }
+        .word {
+            // display: none;
+            padding:0;
+            text-align: center;
+            width:pxToRem(190);
+            position: absolute;
+            left:50%;
+            white-space: nowrap;
+            transform: translateX( -50% );
+            margin-top: 5px;
+        }
+    }
+}
+@media  only screen and (-Webkit-min-device-pixel-ratio: 2),
+        only screen and (min-device-pixel-ratio:2) {
+    .round{
+        .circle {
+            background-image: url('../images/grey_circle@3x.png');    
+            &:after {
+                background-image: url('../images/blue_line@3x.png');    
+            }
+        }
+        .circle2 {
+            background-image: url('../images/blue_circle@3x.png');    
+        }
+    }
+}

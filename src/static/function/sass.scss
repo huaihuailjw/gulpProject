@@ -1,0 +1,51 @@
+$browser-default-font-size: 64px !default;
+* {
+    word-spacing: 1px;
+    letter-spacing: 1px;
+    word-break: break-all;
+    word-wrap: break-word;
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body,
+html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+html {
+    font-size: $browser-default-font-size;
+}
+@function pxTorem($px) {
+    // 获取宽度高度等函数   调用  width:pxTorem(xx);
+    @return $px / $browser-default-font-size * 1rem;
+}
+@mixin px2px($px){
+    // 获取文字大小函数   调用  @include pxTorem(xx);
+    [data-dpr="1"] & { 
+        font-size: ($px / 2) * 1px !important; 
+    }  
+    [data-dpr="2"] & { 
+        font-size: $px * 1px !important; 
+    }  
+    [data-dpr="3"] & { 
+        font-size: ($px / 2 * 3) * 1px !important;
+    }
+}
+@mixin marginLeft($width:100) {
+    margin-left: -$width / 2;
+}
+@mixin marginTop($height:100) {
+    margin-top: -$height / 2;
+}
+@mixin marginCen{
+    margin-left:auto;
+    margin-right:auto;
+}
+@mixin opacity( $opacity:50 ) {
+    opacity: $opacity / 100;
+    filter:alpha(opacity=$opacity);
+}

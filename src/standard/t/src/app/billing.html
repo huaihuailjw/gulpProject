@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <% include ../include/header.html %>
+        <title>停车计费</title>
+        <script src="<%=common%>static/vendor/jquery/jquery-1.11.1.min.js"></script>
+        <% include ../include/location.html %>
+            <link href="static/css/billing.css<%=rev%>" rel="stylesheet">
+            <script src="static/js/billing.js<%=rev%>"></script>
+</head>
+
+<body onload="domReady()">
+    <div class="page fixed">
+        <header class="header">
+            <a href="javascript:;" class="back hidden"></a>
+            <label for="">停车计费</label>
+        </header>
+        <div class="billing">
+            <div class="nav">
+                <ul>
+                    <li class="active">1/5号停车场</li>
+                    <li>2号停车楼</li>
+                    <li>3号停车楼</li>
+                </ul>
+            </div>
+            <div class="park font t1">
+                <h1>停车场</h1>
+                <p>1号停车场：位于首都机场1号航站楼南侧</p>
+                <p>5号停车场：位于首都机场1号航站楼西南侧，紧邻1号停车场</p>
+            </div>
+            <div class="park font t2">
+                <h1>停车场</h1>
+                <p>2号停车场：位于首都机场2号航站楼前</p>
+            </div>
+            <div class="park font t3">
+                <h1>停车场</h1>
+                <p>3号停车场：位于首都机场3号航站楼南侧</p>
+            </div>
+            <div class="carStyle font">
+                <h1>停车类型</h1>
+                <label for="cars">
+                    <input id="cars" checked type="radio" name="car"/>
+                    小型车(19座及以下)
+                </label>
+                <label for="trucks">
+                    <input id="trucks" type="radio" name="car"/>
+                     大型车(19座以上)
+                </label>
+            </div>
+            <div class="time_24 font hide">
+                <h1>24小时内</h1>
+                <select>
+                    <option value="1">首次入场</option>
+                    <option value="2">两次（含）以上入场</option>
+                </select>
+            </div>
+            <div class="floor font t2">
+                <h1>停车楼层</h1>
+                <select>
+                    <option>B2/B3/B4层</option>
+                    <option>B1/F1/F2层</option>
+                </select>
+            </div>
+            <div class="floor font t3">
+                <h1>停车楼层</h1>
+                <select>
+                    <option>A\D\E\H区</option>
+                    <option>B1层B\C区</option>
+                </select>
+            </div>
+            <div class="times font">
+                <h1>停车时长</h1>
+                <label for="dayAmount">
+                    <input id="dayAmount" type="text" name="time"/>
+                    天
+                </label>
+                <label for="hoursAmount">
+                    <input id="hoursAmount" type="text" name="time"/>
+                     小时
+                </label>
+            </div>
+            <div class="combined">
+                <h1>合计 <span id="money">¥0</span></h1>
+                <div class="btns">
+                    <div class="calculate">计算</div>
+                    <div class="reset">再来一次</div>
+                </div>
+                <p>收费政策以停车场入口及机场官网为准<br>计算结果仅供参考。</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

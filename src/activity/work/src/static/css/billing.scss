@@ -1,0 +1,165 @@
+@import "../function/fn.scss";
+$designWidth:750;
+//居中
+@mixin cen( $left:-50%, $top:-50%) {
+    transform: translate($left, $top);
+}
+
+* {
+    outline: none;
+}
+
+//单选框
+input[type="radio"] {
+    position: relative;
+    appearance: button;
+    -webkit-appearance: button;
+    border: 1px solid #b5b5b5;
+    border-radius: 50%;
+    width: pxToRem(26);
+    height: pxToRem(26);
+    &:checked:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: pxToRem(15);
+        height: pxToRem(15);
+        background-color: #11a9ec;
+        border-radius: 50%;
+        @include cen;
+    }
+}
+
+.t2,
+.t3 {
+    display: none;
+}
+
+.hide {
+    display: none;
+}
+
+.billing {
+    padding: pxToRem(40) pxToRem(40)pxToRem(60);
+    .nav {
+        ul {
+            display: flex;
+            border: 1px solid #11a9ec;
+            border-radius: pxToRem(5);
+            height: pxToRem(65);
+            width: pxToRem(660);
+        }
+        li {
+            display: -webkit-flex;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: pxToRem(220);
+            height: pxToRem(65);
+            flex: center;
+            line-height: pxToRem(65);
+            text-align: center;
+            border-right: pxToRem(1) solid #11a9ec;
+            background: #fff;
+            font-size: pxToRem(30);
+            color: #666;
+            &:last-child {
+                border-right: 0;
+            }
+            &.active {
+                color: #fff;
+                background: #11a9ec;
+            }
+        }
+    }
+    .time_24 {
+        select {
+            background: #ededed;
+        }
+        select[disabled=disabled] {
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            -ms-appearance: none;
+            padding: 0 pxToRem(20);
+        }
+    }
+    .font {
+        margin-top: pxToRem(40);
+        padding-bottom: pxToRem(40);
+        border-bottom: 1px solid #d2d2d2;
+        h1 {
+            font-size: pxToRem(30);
+            color: #666;
+            margin-bottom: pxToRem(40);
+        }
+        p {
+            font-size: pxToRem(28);
+            color: #666;
+            line-height: .6rem;
+        }
+        select {
+            font-size: pxToRem(28);
+            color: #666;
+            border: 1px solid #d2d2d2;
+        }
+    }
+    .carStyle {
+        label {
+            font-size: pxToRem(28);
+            color: #666;
+            margin-right: pxToRem(30);
+        }
+    }
+    .times {
+        label {
+            font-size: pxToRem(28);
+            color: #666;
+            input {
+                border: 1px solid #d2d2d2;
+                width: pxToRem(200);
+                font-size: pxToRem(28);
+                color: #666;
+            }
+        }
+    }
+    .combined {
+        margin-top: pxToRem(40);
+        p {
+            clear: both;
+            font-size: 12px;
+            text-align: center;
+        }
+        h1 {
+            font-size: pxToRem(30);
+            color: #666;
+            margin-bottom: pxToRem(40);
+            span {
+                font-size: pxToRem(30);
+                color: #ef6666;
+            }
+        }
+        .btns {
+            margin-bottom: pxToRem(50);
+            overflow: hidden;
+            div {
+                font-size: pxToRem(34);
+                color: #fff;
+                text-align: center;
+                height: pxToRem(65);
+                line-height: pxToRem(65);
+                border-radius: pxToRem(50);
+                width: pxToRem(320);
+            }
+            .calculate {
+                float: left;
+                background: #ffce51;
+            }
+            .reset {
+                float: right;
+                background: #00b1ff
+            }
+        }
+    }
+}

@@ -1,0 +1,61 @@
+/* 
+pxToRem
+一个720px的UI图(一般UI会放大两倍画图)，其中一个div100px，在320px宽的手机上该div应该显示多少？典型等比例计算：
+手机css宽度=320*100/720=(320*100*10)/(720*10)=(320*100*10)/(360*2*10)=((100*10)/(360*2)) * (320/10)
+手机css宽度= rem * font-size
+((100*10)/(360*2))作为rem数值，100即$px，360即uiWidth，于是把10*$px/$uiWidth/2*1rem作为pxToRem函数的返回值，
+只要在UI图上测量多少，代入$px，自动算出对应的rem值多少;
+(320/10)作为基准赋予font-size，320即clientWidth
+
+px2rem 
+ 100 * 320 /720 = ((100*10)/(360*2)) * (320/10)   
+ 100 * 320 / 720 / 20 =  ( 100/ 720 ) * (320/20) = (100 / 720)* 16 = 16 * $px / $designWidth 
+ 100 * 320 /720 / 100 = ( 100/ 720 ) * (320/100) = 3.2 * $px /720 
+ 总结: pxToRem 中的 10 并不是 屏幕划分的等份 而是变换的一个等式的参数
+ 真正的 还分 等份是  $px * $win( 适配参照屏宽 [320...] ) / $designWidth / rem ( 屏幕划分等份 )
+*/
+//UI效果图的宽度一半
+// 直接用全尺寸ui 
+// $uiWidth:360px;
+// $designWidth:720px;
+@function pxToRem($px){ // 屏幕分 10 份
+      // @return 10*$px/$uiWidth/2*1rem;
+      @return 10*$px/$designWidth*1rem;
+}
+@function px2rem($px){ // 屏幕分为 20份
+	@return $px*320/$designWidth/20 + rem;
+}
+/* 图片设置 */
+@mixin img-dpr($image,$suffix){
+	background-image: url(#{$image}.#{$suffix});
+	 [data-dpr="2"] & {
+        background-image: url(#{$image}@2x.#{$suffix});
+      }
+      [data-dpr="3"] & {
+        background-image: url(#{$image}@3x.#{$suffix});
+      }
+}
+// .image{
+// 	@include img-dpr('../image/test','jpg');
+// }
+@mixin styleByDpr( $style,$num ){
+  #{$style}:$num;
+  [data-dpr="2"] & {
+    #{$style}:$num * 2;
+  }
+  [data-dpr="3"] & {
+    #{$style}:$num * 3;
+  }
+}
+@mixin font-dpr($font-size){
+      font-size: $font-size;
+      [data-dpr="2"] & {
+        font-size: $font-size * 2;
+      }
+      [data-dpr="3"] & {
+        font-size: $font-size * 3;
+      }
+}
+// .content{
+//     @include font-dpr(12px);    
+// }
