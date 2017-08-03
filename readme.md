@@ -11,7 +11,7 @@
 * vendor 第三方插件如：jquery,bootstrap等
 
 ### common.js
->common.js提供公共的js方法，dialog弹出、loading加载等内容。
+>common.js提供公共的js方法，dialog弹出、loading加载等内容(后期会追加ajax二次封装)。
 
 #### Dialog 
 >加载公共弹出代码,并暴露相关方法调用。    
