@@ -18,9 +18,9 @@ var pathConfig = {
         root: __dirname + '/build',
         startPath: 'portal.html'
     },
+    base:'/activity/work/',
     basepath: __dirname + '/build', // 文件编译 指定根目录
-    pageBase: '/work/', // html中 base标签的 url 便于 引入静态资源 解决 js中跳转 页面的路径问题
-    baseDir: '/work/', // 输出到 根目录下的 文件夹的名称
+    baseDir: '/t/', // 输出到 根目录下的 文件夹的名称
     output: { // 各个资源 对应的输出路径
         app: '',
         js: 'static/js/',
@@ -30,7 +30,7 @@ var pathConfig = {
     get: function (name) {
         return this.basepath + this.baseDir + (this.output[name] || '');
     },
-    apiBase: "测试环境",
+    apiBase: pub.page.apiBase.test, //"测试"
     replaceStr: 'wechatConfig' in global ? global.wechatConfig.replaceStr : 'build/wechat' // 路径替换内容 将 应用打包到对应的位置
 }
 var compress = false; // 压缩控制参数
@@ -46,7 +46,7 @@ function toRlsDir() {
     pathConfig.basepath = __dirname.replace('src', pathConfig.replaceStr); // 放到 wechat目录下
     pathConfig.baseDir = '/'; // 连接 basepath 和  output字段之前的 斜线
     if (!!global.wechatConfig) { // 设置 启动 外层服务的 初始化访问页面 gulp service --wechat:s --pub test --torls
-        global.wechatConfig.startPath = pub.page.base.rls + 'portal.html';
+        global.wechatConfig.startPath = pathConfig.base + 'portal.html';
     }
 }
 // 所有任务 执行前的 变量赋值 操作
@@ -54,29 +54,25 @@ gulp.task('work:setValue', function () {
     if (yargs.pub) { // 有 pub 参数
         switch (yargs.pub) {
             case 'rls': // 发布
-                pathConfig.pageBase = pub.page.base.rls;
-                pathConfig.apiBase = "正式环境";
+                pathConfig.apiBase = pub.page.apiBase.rls;
                 toRlsDir();
                 rlsStatus = true;
                 compress = true;
                 console.log('进入发布状态');
                 break;
             case 'dev': // 开发
-                pathConfig.pageBase = pub.page.base.dev;
-                pathConfig.apiBase = "开发环境";
+                pathConfig.apiBase = pub.page.apiBase.dev;
                 console.log('进入开发状态');
                 break;
             case 'test': // 测试
-                pathConfig.pageBase = pub.page.base.test;
-                pathConfig.apiBase = "测试环境";
+                pathConfig.apiBase = pub.page.apiBase.test;
                 toRlsDir();
                 console.log('进入测试状态');
                 break;
-        }
-    }
-    if (typeof yargs.pageBase === 'string' && !rlsStatus) { //通过命令 设置页面的 base标签 url 用于外部 单独开启tracing 编译时 使用
-        pathConfig.pageBase = yargs.pageBase;
-        console.log('页面base修改成 ' + pathConfig.pageBase);
+        };
+    };
+    if (yargs.torls) { // 设置编译文件 放到 最外层的 wechat中 用于 在 wechat中开启服务查看子功能的页面的操作
+        toRlsDir();
     }
     if (typeof yargs.name === 'string' && !rlsStatus) { // 通过命令 设置打包后的文件夹的名称 / 项目的名称
         if (yargs.name.charAt(0) != '/') {
@@ -86,25 +82,20 @@ gulp.task('work:setValue', function () {
             yargs.name = yargs.name + '/';
         }
         pathConfig.baseDir = yargs.name;
-    }
-    if (yargs.torls) { // 设置编译文件 放到 最外层的 wechat中 用于 在 wechat中开启服务查看子功能的页面的操作
-        pathConfig.pageBase = pub.page.base.rls; // base 修改为相对于 wechat的
-        toRlsDir();
-    }
-    if (yargs.min) { //用min命令控制代码压缩压缩  ' gulp --min '  开启代码压缩
-        compress = true;
-        console.log('开启代码压缩');
-    }
+    };
     if (yargs.ss) { // 启动以wechat/build为根路径的服务
         // 修改 pageBase,修改代码打包位置
-        pathConfig.pageBase = pub.page.base.rls;
         toRlsDir();
         // 修改启动服务的根路径
         pathConfig.server.root = __dirname.substring(0, __dirname.indexOf('src')) + pathConfig.replaceStr;
         console.log('设置启动服务的根目录为:' + pathConfig.server.root);
         //修改根路径 到项目启始页的前缀
-        pathConfig.server.startPath = pub.page.base.rls + 'index.html';
+        pathConfig.server.startPath = pathConfig.base + 'portal.html';
     }
+    if (yargs.min) { //用min命令控制代码压缩压缩  ' gulp --min '  开启代码压缩
+        compress = true;
+        console.log('开启代码压缩');
+    };
     console.log('代码打包到 ' + pathConfig.basepath + pathConfig.baseDir + ' 文件夹下');
 });
 // scss处理到 css
@@ -137,7 +128,6 @@ gulp.task('work:js', function () {
 gulp.task('work:app', function () {
     gulp.src(__dirname + '/src/app/*.html')
         .pipe(ejs({
-            base: pathConfig.pageBase, //指定默认地址
             common: pub.page.common.ctx, //指定地址
             rev: "?v=" + new Date().getTime()
         }))
@@ -163,7 +153,7 @@ gulp.task('work:server', function () {
             baseDir: pathConfig.server.root,
             index: '/index.html'
         },
-        port: yargs.p,
+        porwork: yargs.p,
         startPath: pathConfig.server.startPath,
         browser: ["chrome"]
     });
@@ -180,10 +170,10 @@ gulp.task('work:watch', function () {
 gulp.task('default', ['work:all'], () => {
     if (yargs.w) {
         gulp.start('work:watch');
-    }
+    };
     if (yargs.s) { // 以当前目录下的 build为根路径的服务
         gulp.start('work:server');
-    } else if (yargs.ss) { // 以wechat/build为根路径的服务
+    } else if (yargs.ss) { // 以/build为根路径的服务
         gulp.start('work:server');
     }
 });
@@ -191,7 +181,7 @@ gulp.task('default', ['work:all'], () => {
 // 暴露接口
 module.exports = {
     compile: function () {
-        console.log('开始执行 offical-traffic 机场交通 的编译!');
+        console.log('开始执行 T 的编译!');
         yargs.pub = typeof yargs.pub === 'string' ? yargs.pub : 'rls';
         gulp.start('default');
     }

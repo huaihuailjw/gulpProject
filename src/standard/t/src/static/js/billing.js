@@ -1,4 +1,5 @@
 $(function () {
+    var qq = "<%=apiBase%>";
     var amount = 0, //天
         hourAmount = 0, //小时
         dayAmount = $("#dayAmount"), //天数的值
@@ -38,6 +39,7 @@ $(function () {
             ).attr("disabled", 'disabled');
         } else {
             $(".time_24 select").html(
+                '<%=apiBase%>"'+
                 '<option value="1">首次入场</option>' +
                 '<option value="2">两次（含）以上入场</option>'
             ).attr("disabled", false);

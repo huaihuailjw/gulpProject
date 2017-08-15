@@ -13,7 +13,7 @@ function is_weixin() {
 }
 // 图片链接预览功能
 var imgObj = {
-        base: document.baseURI+"<%=apiBase%>",
+        base: document.baseURI,
         origin: window.location.origin,
         srcList: [], // 图片 url 列表
         srcTable: [],

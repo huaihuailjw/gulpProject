@@ -40,7 +40,6 @@ function getUrlQueryString(name) {
 function trim(str) {
     return str.replace(/^\s+|\s+$/g, '');
 }
-
 /**
  *
  * 转化 html 字符串 到 dom元素
@@ -52,5 +51,17 @@ function parseDom(str) {
     div.innerHTML = str;
     return div.childNodes[0];
 }
+/**
+ *
+ * 封装ajax
+ * @param {any} obj
+ * @param {any} ignore true 忽略公共参数的添加
+ */
+function ajaxBase(obj, ignore) {
+    var confirm = null;
+    var loading = null;
+    var sign = obj.url.indexOf('?') > 0 ? '&' : '?';
+    
+};
 // @@include('../module/js/loading.js')
 // @@include('../module/js/dialog.js')
